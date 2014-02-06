@@ -21,7 +21,7 @@
 
     "predef": [
         "define",
-        "chai",
+        "expect",
         "describe",
         "it",
         "beforeEach",

@@ -27,13 +27,13 @@
         describe('#queue', function() {
             it('Should throw exception when no callback is specified',
                 function() {
-                    expect($queue.queue).to.throw(Error);
+                    expect($queue.queue).toThrow();
                 }
             );
 
             it('Should make a new Queue', function() {
                 var aQueue = $queue.queue({callback: myCallback});
-                expect(aQueue).to.be.ok;
+                expect(aQueue).not.toBe(null);
             });
         });
 
@@ -46,7 +46,7 @@
                 $timeout.flush();
             }
 
-            expect(result).to.have.length(5);
+            expect(result.length).toEqual(5);
 
             // myQueue.add('james');
             // myQueue.add('tom');
