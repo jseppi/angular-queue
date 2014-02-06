@@ -14,7 +14,8 @@ angular.module('ngQueue', []).factory('$queue',
         var defaults = {
             callback: null,
             delay: 100,
-            complete: null
+            complete: null,
+            paused: false
         };
 
         /**
@@ -164,10 +165,19 @@ angular.module('ngQueue', []).factory('$queue',
         /**
          * queue() is a convenience function to return a new Queue
          *
-         * Usage:
-         *          TODO
+         * Usage: var queue = $queue.queue(someOptions);
          *
          * @param<Object> options
+         *      callback<Function> - *Required* - Function called for each item
+         *          in the queue after each delay. Passed
+         *          item and called with the context of Queue.
+         *      delay<Number> - *Optional* - Number of milliseconds between each
+         *          processing step of the queue. Defaults to 100.
+         *      complete<Function> - *Optional* - Function called upon
+         *          completion of processing all items in the queue.
+         *      paused<Boolean> - *Optional* - Flag to indicate if the queue
+         *          starts paused. If false, queue will start processing
+         *          items immediately after the first add or addEach.
          * @return<Queue> a new Queue
          */
         Queue.queue = function(options) {
