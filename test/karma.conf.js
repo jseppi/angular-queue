@@ -9,14 +9,14 @@ module.exports = function(config) {
         // base path, that will be used to resolve files and exclude
         basePath: '',
 
-
         // frameworks to use
-        frameworks: ['mocha', 'chai'],
+        frameworks: ['jasmine'],
 
 
         // list of files / patterns to load in the browser
         files: [
             'vendor/angular.min.js',
+            'vendor/angular-mocks.js',
             '../angular-queue.js',
             '**/*Spec.js'
         ],
@@ -29,7 +29,7 @@ module.exports = function(config) {
 
         // test results reporter to use
         // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-        reporters: ['dots'],
+        reporters: ['progress'],
 
 
         // web server port
