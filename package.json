@@ -1,8 +1,8 @@
 {
   "name": "angular-queue",
-  "version": "0.0.0",
-  "description": "Queue implementation for AngularJS",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "Processing queue for AngularJS",
+  "main": "angular-queue.js",
   "directories": {
     "test": "test"
   },
@@ -17,7 +17,6 @@
   "author": "James Seppi",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "gitHead": "2b315cb5ca99d142118cd20030a44ec7dbea325e",
   "devDependencies": {
     "browserify": "~3.24.11",
     "karma-script-launcher": "~0.1.0",
