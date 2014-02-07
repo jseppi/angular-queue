@@ -1,0 +1,32 @@
+{
+    "bitwise": true,
+    "camelcase": true,
+    "curly": true,
+    "eqeqeq": true,
+    "globalstrict": true,
+    "immed": true,
+    "indent": 4,
+    "latedef": "nofunc",
+    "maxlen": 120,
+    "newcap": true,
+    "noarg": true,
+    "node": true,
+    "nonew": true,
+    "quotmark": false,
+    "trailing": true,
+    "undef": true,
+    "unused": true,
+    "white": false,
+    "expr": true,
+
+    "predef": [
+        "define",
+        "expect",
+        "describe",
+        "it",
+        "beforeEach",
+        "inject",
+        "console",
+        "angular"
+    ]
+}
