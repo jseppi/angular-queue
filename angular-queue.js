@@ -12,7 +12,6 @@ angular.module('ngQueue', []).factory('$queue',
     function($timeout) {
 
         var defaults = {
-            callback: null,
             delay: 100,
             complete: null,
             paused: false
@@ -22,23 +21,36 @@ angular.module('ngQueue', []).factory('$queue',
          * Implementation of the Queue class
          *
          */
-        function Queue(options) {
+        function Queue(callback, options) {
             options = angular.extend({}, defaults, options);
 
-            if (!options.callback || !angular.isFunction(options.callback)) {
-                throw new Error('options.callback must be a function');
+            if (!angular.isFunction(callback)) {
+                throw new Error('callback must be a function');
             }
 
             //-- Private variables
             var cleared = false,
-                paused = options.paused,
                 timeoutProm = null;
 
             //-- Public variables
             this.queue = [];
             this.delay = options.delay;
-            this.callback = options.callback;
+            this.callback = callback;
             this.complete = options.complete;
+            this.paused = options.paused;
+
+            //-- Private methods
+            /**
+             * stop() stops processing of the queue
+             *
+             */
+            var stop = function() {
+                if (timeoutProm) {
+                    $timeout.cancel(timeoutProm);
+                }
+
+                timeoutProm = null;
+            };
 
             //-- Privileged/Public methods
 
@@ -73,7 +85,7 @@ angular.module('ngQueue', []).factory('$queue',
                     this.queue = this.queue.concat(items);
                 }
 
-                if (!paused) { this.start(); }
+                if (!this.paused) { this.start(); }
 
                 return this.size();
             };
@@ -86,7 +98,7 @@ angular.module('ngQueue', []).factory('$queue',
              */
             this.clear = function() {
                 var orig = this.queue;
-                this.stop();
+                stop();
                 this.queue = [];
                 cleared = true;
                 return orig;
@@ -97,21 +109,10 @@ angular.module('ngQueue', []).factory('$queue',
              *
              */
             this.pause = function() {
-                this.stop();
-                paused = true;
+                stop();
+                this.paused = true;
             };
 
-            /**
-             * stop() stops processing of the queue
-             *
-             */
-            this.stop = function() {
-                if (timeoutProm) {
-                    $timeout.cancel(timeoutProm);
-                }
-
-                timeoutProm = null;
-            };
 
             /**
              * start() starts processing of the queue.
@@ -120,12 +121,12 @@ angular.module('ngQueue', []).factory('$queue',
              */
             this.start = function() {
                 var _this = this;
-                paused = false;
+                this.paused = false;
                 if (this.size() && !timeoutProm) {
                     (function loopy() {
                         var item;
 
-                        _this.stop();
+                        stop();
 
                         if (!_this.size()) {
                             cleared = true;
@@ -166,11 +167,11 @@ angular.module('ngQueue', []).factory('$queue',
          * queue() is a convenience function to return a new Queue
          *
          * Usage: var queue = $queue.queue(someOptions);
-         *
-         * @param<Object> options
-         *      callback<Function> - *Required* - Function called for each item
-         *          in the queue after each delay. Passed
+         * 
+         * @param<Function> callback - *Required* - Function called for 
+         *          each item in the queue after each delay. Passed
          *          item and called with the context of Queue.
+         * @param<Object> options
          *      delay<Number> - *Optional* - Number of milliseconds between each
          *          processing step of the queue. Defaults to 100.
          *      complete<Function> - *Optional* - Function called upon
@@ -180,8 +181,8 @@ angular.module('ngQueue', []).factory('$queue',
          *          items immediately after the first add or addEach.
          * @return<Queue> a new Queue
          */
-        Queue.queue = function(options) {
-            return new Queue(options);
+        Queue.queue = function(callback, options) {
+            return new Queue(callback, options);
         };
 
         return Queue;
