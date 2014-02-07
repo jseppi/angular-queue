@@ -90,6 +90,17 @@
             });
         });
 
+        describe('#instanceOf', function() {
+            it('Should return the index of the item in the queue', function() {
+                myQueue.pause();
+                myQueue.addEach(['tom', 'joe', 'mike']);
+                expect(myQueue.indexOf('tom')).toEqual(0);
+                expect(myQueue.indexOf('joe')).toEqual(1);
+                expect(myQueue.indexOf('mike')).toEqual(2);
+                expect(myQueue.indexOf('invalid')).toEqual(-1);
+            });
+        });
+
         describe('Queue processing', function() {
             it('Should process items via the provided callback', function() {
                 expect(result.length).toEqual(0);
