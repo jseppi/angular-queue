@@ -23,8 +23,11 @@ In your controller, services, etc, inject `$queue`, and create an instance to us
                     delay: 2000, //delay 2 seconds between processing items
                     paused: true, //start out paused
                     complete: function() { console.log('complete!'); }
-                },
-                myQueue = $queue.queue(myCallback, options);
+                };
+            
+            // create an instance of a queue
+            // note that the first argument - a callback to be used on each item - is required
+            var myQueue = $queue.queue(myCallback, options);
                 
             myQueue.add('item 1'); //add one item
             myQueue.addEach(['item 2', 'item 3']); //add multiple items
