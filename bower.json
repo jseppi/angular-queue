@@ -1,0 +1,24 @@
+{
+  "name": "angular-queue",
+  "main": "angular-queue.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jseppi/angular-queue",
+  "authors": [
+    "James Seppi <james.seppi@gmail.com>"
+  ],
+  "description": "Processing queue for AngularJS",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "queue",
+    "processing"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
