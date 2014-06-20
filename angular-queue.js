@@ -1,6 +1,6 @@
 /**
  * Angular Queue
- * @version v0.0.0
+ * @version v0.0.1
  * @author James Seppi
  * @license MIT License, http://jseppi.mit-license.org
  */
