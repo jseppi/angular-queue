@@ -127,6 +127,9 @@ angular.module('ngQueue', []).factory('$queue',
                         var item;
 
                         stop();
+                        
+                        if(_this.paused)
+                            return;
 
                         if (!_this.size()) {
                             cleared = true;
