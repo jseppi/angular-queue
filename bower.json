@@ -1,7 +1,7 @@
 {
   "name": "angular-queue",
   "main": "angular-queue.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/jseppi/angular-queue",
   "authors": [
     "James Seppi <james.seppi@gmail.com>"
