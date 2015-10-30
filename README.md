@@ -1,6 +1,6 @@
 # angular-queue
 
-Processing/messaging queue for [AngularJS](http://angularjs.org/).
+Processing queue for [AngularJS](http://angularjs.org/).
 
 Based on http://benalman.com/code/projects/jquery-message-queuing/docs/files/jquery-ba-jqmq-js.html
 
