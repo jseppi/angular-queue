@@ -1,0 +1,28 @@
+p {
+	font-family: serif;
+	font-size: 20px;
+	color: #990000;
+	text-align: center;
+}
+
+.message {
+	display: block;
+	position: absolute;
+	width: 320px;
+	height: 60px;
+	background: white;
+	z-index: 2;
+	top: 150px;
+	left: 100px;
+	padding: 5px;
+	margin: 0px;
+	border-radius: 5px;
+	box-shadow: 5px 5px 3px #888888;
+
+}
+
+.shop {
+	display: block;
+	position: absolute;
+	z-index: 1;
+}
